@@ -9,6 +9,20 @@ namespace SubstitutionCipher
     {
         public const string Alpha = "abcdefghijklmnopqrstuvwxyz";
 
+        public static string CreateRandomKey()
+        {
+            StringBuilder lettersLeft = new StringBuilder(CipherGenerator.Alpha);
+            StringBuilder temp = new StringBuilder();
+            Random r = new Random();
+            for (int i = 0; i < CipherGenerator.Alpha.Length; i++)
+            {
+                int index = r.Next(lettersLeft.Length);
+                temp.Append(lettersLeft[index]);
+                lettersLeft.Remove(index, 1);
+            }
+            string key = temp.ToString();
+            return key;
+        }
         public static string CreateKey (string original, string next)
         {
             List<Tuple<char, char>> sortedLetters = new List<Tuple<char, char>>();

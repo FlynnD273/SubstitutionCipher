@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -11,22 +12,42 @@ namespace SubstitutionCipher.Resources
         public string Code { get; private set; }
         public string Cleartext { get; private set; }
 
-        private Dictionary<string, ulong> grams;
+        private Dictionary<string, double> grams;
         private int gramLength;
         private ulong totalGrams;
+        private double norm;
 
         public CipherCracker (string code)
         {
+            norm = 0;
+            ulong[] top = new ulong[5];
             Code = code;
-            grams = new Dictionary<string, ulong>();
+            grams = new Dictionary<string, double>();
             string[] trigrams = Properties.Resources.Trigrams_English.Split('\n');
-            foreach (string line in trigrams)
+            for (int i = 0; i < trigrams.Length; i++)
             {
+                string line = trigrams[i];
                 string[] tokens = line.Split("\t");
                 grams.Add(tokens[0].ToLower(), ulong.Parse(tokens[1]));
                 gramLength = tokens[0].ToLower().Length;
                 totalGrams += ulong.Parse(tokens[1]);
+                if (i < top.Length)
+                {
+                    top[i] = ulong.Parse(tokens[1]);
+                }
             }
+
+            List<string> keys = new List<string>(grams.Keys);
+            foreach (string s in keys)
+            {
+                grams[s] /= totalGrams;
+            }
+
+            for (int i = 0; i < top.Length; i++)
+            {
+                norm += Math.Log(top[i]);// / (double)totalGrams);
+            }
+            norm /= top.Length;
         }
         
         public Tuple<string, string, double> Decipher (string code = "")
@@ -35,8 +56,7 @@ namespace SubstitutionCipher.Resources
             {
                 Code = code;
             }
-
-            string key = CipherGenerator.Alpha;
+            string key = CipherGenerator.CreateRandomKey();
             string testKey = key;
 
             double currentFitness = CalcFitness(Code);
@@ -57,7 +77,7 @@ namespace SubstitutionCipher.Resources
                         Cipher c = new Cipher(testKey);
                         Cleartext = c.Decode(Code);
                         double tempFitness = CalcFitness(Cleartext);
-                        if (tempFitness > currentFitness)
+                        if (tempFitness < currentFitness)
                         {
                             currentFitness = tempFitness;
                             betterKey = testKey;
@@ -69,25 +89,6 @@ namespace SubstitutionCipher.Resources
             while (betterFitness);
 
             key = betterKey;
-
-            //Random r = new Random();
-            //while (first < 200000)
-            //{
-            //    testKey = Swap(key, r.Next(key.Length), r.Next(key.Length));
-            //    Cipher c = new Cipher(CipherGenerator.FromKey(testKey));
-            //    Cleartext = c.Decode(Code);
-            //    double tempFitness = CalcFitness(Cleartext);
-            //    if (tempFitness > currentFitness)
-            //    {
-            //        currentFitness = tempFitness;
-            //        key = testKey;
-            //        first = 0;
-            //    }
-            //    else
-            //    {
-            //        first++;
-            //    }
-            //}
 
             Cipher cipher = new Cipher(key);
             Cleartext = cipher.Decode(Code);
@@ -118,15 +119,18 @@ namespace SubstitutionCipher.Resources
             text = sb.ToString();
 
             double fitness = 0;
-
+            int l = 0;
             for (int i = 0; i < text.Length - gramLength; i++)
             {
                 string g = text.Substring(i, gramLength);
                 if (grams.ContainsKey(g))
                 {
-                    fitness += Math.Log(grams[g] / (double)totalGrams);
+                    fitness += Math.Log(grams[g]);
+                    l++;
                 }
             }
+            fitness /= l;
+            fitness = Math.Abs(fitness - norm) / norm;
 
             return fitness;
         }

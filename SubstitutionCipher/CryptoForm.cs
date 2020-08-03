@@ -80,7 +80,7 @@ namespace SubstitutionCipher
 
         private void EncodeButton_Click(object sender, EventArgs e)
         {
-            if (SourceFileBox.Text.Length > 0)
+            if (File.Exists(SourceFileBox.Text))
             {
                 string cleartext = File.ReadAllText(file);
                 Cipher cipher = new Cipher(key);
@@ -105,7 +105,7 @@ namespace SubstitutionCipher
 
         private void DecodeButton_Click(object sender, EventArgs e)
         {
-            if (SourceFileBox.Text.Length > 0)
+            if (File.Exists(SourceFileBox.Text))
             {
                 string code = File.ReadAllText(file);
                 Cipher cipher = new Cipher(key);
@@ -130,7 +130,7 @@ namespace SubstitutionCipher
 
         private void CrackButton_Click(object sender, EventArgs e)
         {
-            if (SourceFileBox.Text.Length > 0)
+            if (File.Exists(SourceFileBox.Text))
             {
                 string code = File.ReadAllText(file);
                 CipherCracker c = new CipherCracker(code);
@@ -146,6 +146,11 @@ namespace SubstitutionCipher
                     }
                 }.Start();
             }
+        }
+
+        private void RandomKeyButton_Click(object sender, EventArgs e)
+        {
+            KeyBox.Text = CipherGenerator.CreateRandomKey();
         }
     }
 }

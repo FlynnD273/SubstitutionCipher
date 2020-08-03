@@ -39,6 +39,7 @@ namespace SubstitutionCipher
             this.EncodeButton = new System.Windows.Forms.Button();
             this.DecodeButton = new System.Windows.Forms.Button();
             this.CrackButton = new System.Windows.Forms.Button();
+            this.RandomKeyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // KeyLabel
@@ -56,18 +57,18 @@ namespace SubstitutionCipher
             | System.Windows.Forms.AnchorStyles.Right)));
             this.KeyBox.Location = new System.Drawing.Point(12, 37);
             this.KeyBox.Name = "KeyBox";
-            this.KeyBox.Size = new System.Drawing.Size(492, 31);
-            this.KeyBox.TabIndex = 2;
+            this.KeyBox.Size = new System.Drawing.Size(386, 31);
+            this.KeyBox.TabIndex = 0;
             this.KeyBox.TextChanged += new System.EventHandler(this.KeyBox_TextChanged);
             // 
             // CopyButton
             // 
             this.CopyButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CopyButton.Location = new System.Drawing.Point(510, 37);
+            this.CopyButton.Location = new System.Drawing.Point(403, 37);
             this.CopyButton.Name = "CopyButton";
-            this.CopyButton.Size = new System.Drawing.Size(112, 34);
-            this.CopyButton.TabIndex = 3;
+            this.CopyButton.Size = new System.Drawing.Size(113, 34);
+            this.CopyButton.TabIndex = 1;
             this.CopyButton.Text = "Copy Key";
             this.CopyButton.UseVisualStyleBackColor = true;
             this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
@@ -78,8 +79,8 @@ namespace SubstitutionCipher
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SourceFileBox.Location = new System.Drawing.Point(12, 99);
             this.SourceFileBox.Name = "SourceFileBox";
-            this.SourceFileBox.Size = new System.Drawing.Size(610, 31);
-            this.SourceFileBox.TabIndex = 2;
+            this.SourceFileBox.Size = new System.Drawing.Size(621, 31);
+            this.SourceFileBox.TabIndex = 3;
             this.SourceFileBox.TextChanged += new System.EventHandler(this.SourceFileBox_TextChanged);
             this.SourceFileBox.Validated += new System.EventHandler(this.SourceFileBox_TextChanged);
             // 
@@ -117,7 +118,7 @@ namespace SubstitutionCipher
             this.DecodeButton.Location = new System.Drawing.Point(130, 200);
             this.DecodeButton.Name = "DecodeButton";
             this.DecodeButton.Size = new System.Drawing.Size(112, 34);
-            this.DecodeButton.TabIndex = 5;
+            this.DecodeButton.TabIndex = 6;
             this.DecodeButton.Text = "Decode File";
             this.DecodeButton.UseVisualStyleBackColor = true;
             this.DecodeButton.Click += new System.EventHandler(this.DecodeButton_Click);
@@ -127,16 +128,29 @@ namespace SubstitutionCipher
             this.CrackButton.Location = new System.Drawing.Point(248, 200);
             this.CrackButton.Name = "CrackButton";
             this.CrackButton.Size = new System.Drawing.Size(149, 34);
-            this.CrackButton.TabIndex = 6;
+            this.CrackButton.TabIndex = 7;
             this.CrackButton.Text = "Crack Cipher";
             this.CrackButton.UseVisualStyleBackColor = true;
             this.CrackButton.Click += new System.EventHandler(this.CrackButton_Click);
+            // 
+            // RandomKeyButton
+            // 
+            this.RandomKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RandomKeyButton.Location = new System.Drawing.Point(522, 37);
+            this.RandomKeyButton.Name = "RandomKeyButton";
+            this.RandomKeyButton.Size = new System.Drawing.Size(113, 34);
+            this.RandomKeyButton.TabIndex = 2;
+            this.RandomKeyButton.Text = "Random";
+            this.RandomKeyButton.UseVisualStyleBackColor = true;
+            this.RandomKeyButton.Click += new System.EventHandler(this.RandomKeyButton_Click);
             // 
             // CryptoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 259);
+            this.ClientSize = new System.Drawing.Size(645, 246);
+            this.Controls.Add(this.RandomKeyButton);
             this.Controls.Add(this.CrackButton);
             this.Controls.Add(this.DecodeButton);
             this.Controls.Add(this.EncodeButton);
@@ -147,7 +161,7 @@ namespace SubstitutionCipher
             this.Controls.Add(this.KeyBox);
             this.Controls.Add(this.KeyLabel);
             this.Name = "CryptoForm";
-            this.Text = "Form1";
+            this.Text = "Cipher";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,6 +177,7 @@ namespace SubstitutionCipher
         private System.Windows.Forms.Button EncodeButton;
         private System.Windows.Forms.Button DecodeButton;
         private System.Windows.Forms.Button CrackButton;
+        private System.Windows.Forms.Button RandomKeyButton;
     }
 }
 
