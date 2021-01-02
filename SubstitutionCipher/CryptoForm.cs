@@ -1,15 +1,12 @@
 ﻿using SubstitutionCipher.Resources;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
+//This is the form with all the controls
 
 namespace SubstitutionCipher
 {
@@ -20,11 +17,14 @@ namespace SubstitutionCipher
         public CryptoForm()
         {
             InitializeComponent();
+
+            //Initialize the labels
             KeyBox.Text = CipherGenerator.Alpha;
             KeyLabel.Text = CipherGenerator.Alpha;
         }
 
-        private void KeyBox_TextChanged(object sender, EventArgs e)
+        //Make sure there aren't any invalid or repeating characters
+        private void KeyBox_Validated (object sender, EventArgs e)
         {
             KeyBox.Text = KeyBox.Text.ToLower();
             KeyBox.Text = string.Concat(KeyBox.Text.Distinct());
@@ -48,7 +48,9 @@ namespace SubstitutionCipher
 
             key = KeyBox.Text;
         }
-        private void SourceFileBox_TextChanged(object sender, EventArgs e)
+
+        //Check if it's a valid filepath
+        private void SourceFileBox_Validated (object sender, EventArgs e)
         {
             if (!File.Exists(SourceFileBox.Text) && !SourceFileBox.Focused)
             {
@@ -61,11 +63,13 @@ namespace SubstitutionCipher
             }
         }
 
+        //Copy the key into clipboard
         private void CopyButton_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(key);
         }
 
+        //Open a text file
         private void SelectFilebutton_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -75,21 +79,19 @@ namespace SubstitutionCipher
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 SourceFileBox.Text = ofd.FileName;
+                file = ofd.FileName;
             }
         }
 
+        //Encipher text from a file (No text boxes yet)
         private void EncodeButton_Click(object sender, EventArgs e)
         {
-            if (File.Exists(SourceFileBox.Text))
+            if (File.Exists(file) && file != "")
             {
                 string cleartext = File.ReadAllText(file);
                 Cipher cipher = new Cipher(key);
                 string code = cipher.Encode(cleartext);
                 string name = Path.GetFileNameWithoutExtension(file);
-                if (name.EndsWith("_Decoded"))
-                {
-                    name = name.Remove(name.Length - 8);
-                }
                 string filepath = Path.Combine(Path.GetDirectoryName(file), name + "_Encoded.txt");
                 File.WriteAllText(filepath, code);
 
@@ -103,18 +105,15 @@ namespace SubstitutionCipher
             }
         }
 
+        //Decipher from a text file
         private void DecodeButton_Click(object sender, EventArgs e)
         {
-            if (File.Exists(SourceFileBox.Text))
+            if (File.Exists(file) && file != "")
             {
                 string code = File.ReadAllText(file);
                 Cipher cipher = new Cipher(key);
                 string cleartext = cipher.Decode(code);
                 string name = Path.GetFileNameWithoutExtension(file);
-                if (name.EndsWith("_Encoded"))
-                {
-                    name = name.Remove(name.Length - 8);
-                }
                 string filepath = Path.Combine(Path.GetDirectoryName(file), name + "_Decoded.txt");
                 File.WriteAllText(filepath, cleartext);
 
@@ -128,15 +127,17 @@ namespace SubstitutionCipher
             }
         }
 
+        //Decipher code with an unknown key from a text file
         private void CrackButton_Click(object sender, EventArgs e)
         {
-            if (File.Exists(SourceFileBox.Text))
+            if (File.Exists(file) && file != "")
             {
                 string code = File.ReadAllText(file);
                 CipherCracker c = new CipherCracker(code);
                 var d = c.Decipher();
                 string filepath = Path.Combine(Path.GetDirectoryName(file), Path.GetFileNameWithoutExtension(file) + "_Deciphered.txt");
                 File.WriteAllText(filepath, $"KEY: {CipherGenerator.Alpha} = {d.Item2}\n\n{d.Item1}");
+                KeyBox.Text = d.Item2;
 
                 new Process
                 {
@@ -148,9 +149,11 @@ namespace SubstitutionCipher
             }
         }
 
+        //Generate a random key
         private void RandomKeyButton_Click(object sender, EventArgs e)
         {
             KeyBox.Text = CipherGenerator.CreateRandomKey();
+            key = KeyBox.Text;
         }
     }
 }

@@ -7,13 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\english3.txt" />
     <None Remove="Resources\Trigrams_English.txt" />
+    <None Remove="Resources\words_alpha.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NetSpell" Version="2.1.7" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Resources\Trigrams_English.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\english3.txt" />
+    <EmbeddedResource Include="Resources\words_alpha.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

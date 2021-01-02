@@ -118,10 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="english3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\english3.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="Quadgrams_English" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Quadgrams_English.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="Trigrams_English" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Trigrams_English.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="words_alpha" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\words_alpha.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

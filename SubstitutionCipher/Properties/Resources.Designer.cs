@@ -61,6 +61,79 @@ namespace SubstitutionCipher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to a
+        ///aa
+        ///aaa
+        ///aachen
+        ///aardvark
+        ///aardvarks
+        ///aardwolf
+        ///aardwolves
+        ///aarhus
+        ///aaron
+        ///aaronic
+        ///aaronical
+        ///aasvogel
+        ///aasvogels
+        ///ab
+        ///aba
+        ///ababa
+        ///abac
+        ///abaca
+        ///abacas
+        ///abaci
+        ///aback
+        ///abacs
+        ///abactinal
+        ///abactinally
+        ///abactor
+        ///abactors
+        ///abacus
+        ///abacuses
+        ///abadan
+        ///abaddon
+        ///abaft
+        ///abalone
+        ///abalones
+        ///abampere
+        ///abamperes
+        ///aband
+        ///abandon
+        ///abandoned
+        ///abandonedly
+        ///abandonee
+        ///abandonees
+        ///abandoning
+        ///abandonment
+        ///abandonments
+        ///abandons
+        ///abas
+        ///abase
+        ///abased
+        ///abasement
+        ///abasements
+        ///abases
+        ///abash
+        ///abashed
+        ///abashedly
+        ///abashes
+        ///abashing
+        ///abashless
+        ///abashment
+        ///abashments
+        ///abasin
+        ///abasing
+        ///abask
+        ///abat
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string english3 {
+            get {
+                return ResourceManager.GetString("english3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TION 13168375
         ///NTHE 11234972
         ///THER 10218035
@@ -144,6 +217,76 @@ namespace SubstitutionCipher.Properties {
         internal static string Trigrams_English {
             get {
                 return ResourceManager.GetString("Trigrams_English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a
+        ///aa
+        ///aaa
+        ///aah
+        ///aahed
+        ///aahing
+        ///aahs
+        ///aal
+        ///aalii
+        ///aaliis
+        ///aals
+        ///aam
+        ///aani
+        ///aardvark
+        ///aardvarks
+        ///aardwolf
+        ///aardwolves
+        ///aargh
+        ///aaron
+        ///aaronic
+        ///aaronical
+        ///aaronite
+        ///aaronitic
+        ///aarrgh
+        ///aarrghh
+        ///aaru
+        ///aas
+        ///aasvogel
+        ///aasvogels
+        ///ab
+        ///aba
+        ///ababdeh
+        ///ababua
+        ///abac
+        ///abaca
+        ///abacay
+        ///abacas
+        ///abacate
+        ///abacaxi
+        ///abaci
+        ///abacinate
+        ///abacination
+        ///abacisci
+        ///abaciscus
+        ///abacist
+        ///aback
+        ///abacli
+        ///abacot
+        ///abacterial
+        ///abactinal
+        ///abactinally
+        ///abaction
+        ///abactor
+        ///abaculi
+        ///abaculus
+        ///abacus
+        ///abacuses
+        ///abada
+        ///abaddon
+        ///abadejo
+        ///abadengo
+        ///abadia [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string words_alpha {
+            get {
+                return ResourceManager.GetString("words_alpha", resourceCulture);
             }
         }
     }

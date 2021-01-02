@@ -45,9 +45,10 @@ namespace SubstitutionCipher
             // KeyLabel
             // 
             this.KeyLabel.AutoSize = true;
+            this.KeyLabel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.KeyLabel.Location = new System.Drawing.Point(12, 9);
             this.KeyLabel.Name = "KeyLabel";
-            this.KeyLabel.Size = new System.Drawing.Size(61, 25);
+            this.KeyLabel.Size = new System.Drawing.Size(70, 22);
             this.KeyLabel.TabIndex = 0;
             this.KeyLabel.Text = "Offset";
             // 
@@ -55,11 +56,12 @@ namespace SubstitutionCipher
             // 
             this.KeyBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.KeyBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.KeyBox.Location = new System.Drawing.Point(12, 37);
             this.KeyBox.Name = "KeyBox";
-            this.KeyBox.Size = new System.Drawing.Size(386, 31);
+            this.KeyBox.Size = new System.Drawing.Size(386, 29);
             this.KeyBox.TabIndex = 0;
-            this.KeyBox.TextChanged += new System.EventHandler(this.KeyBox_TextChanged);
+            this.KeyBox.Validated += new System.EventHandler(this.KeyBox_Validated);
             // 
             // CopyButton
             // 
@@ -81,8 +83,7 @@ namespace SubstitutionCipher
             this.SourceFileBox.Name = "SourceFileBox";
             this.SourceFileBox.Size = new System.Drawing.Size(621, 31);
             this.SourceFileBox.TabIndex = 3;
-            this.SourceFileBox.TextChanged += new System.EventHandler(this.SourceFileBox_TextChanged);
-            this.SourceFileBox.Validated += new System.EventHandler(this.SourceFileBox_TextChanged);
+            this.SourceFileBox.Validated += new System.EventHandler(this.SourceFileBox_Validated);
             // 
             // SourceFileLabel
             // 
